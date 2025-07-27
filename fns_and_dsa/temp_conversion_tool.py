@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 # Global conversion factors
-CELSIUS_TO_FAHRENHEIT_FACTOR = 9 / 5
-FAHRENHEIT_TO_CELSIUS_FACTOR = 5 / 9
+CELSIUS_TO_FAHRENHEIT_FACTOR = 9/5
+FAHRENHEIT_TO_CELSIUS_FACTOR = 5/9
 
 def celsius_to_fahrenheit(celsius):
     """Convert Celsius to Fahrenheit"""
@@ -25,14 +25,20 @@ def main():
         choice = input("Enter your choice (1/2/3): ")
 
         if choice == "1":
-            celsius = float(input("Enter temperature in Celsius: "))
-            fahrenheit = celsius_to_fahrenheit(celsius)
-            print(f"{celsius}°C is {fahrenheit:.2f}°F\n")
+            try:
+                celsius = float(input("Enter temperature in Celsius: "))
+                fahrenheit = celsius_to_fahrenheit(celsius)
+                print(f"{celsius}°C is {fahrenheit:.2f}°F\n")
+            except ValueError:
+                print("Invalid input. Please enter a numeric value.\n")
 
         elif choice == "2":
-            fahrenheit = float(input("Enter temperature in Fahrenheit: "))
-            celsius = fahrenheit_to_celsius(fahrenheit)
-            print(f"{fahrenheit}°F is {celsius:.2f}°C\n")
+            try:
+                fahrenheit = float(input("Enter temperature in Fahrenheit: "))
+                celsius = fahrenheit_to_celsius(fahrenheit)
+                print(f"{fahrenheit}°F is {celsius:.2f}°C\n")
+            except ValueError:
+                print("Invalid input. Please enter a numeric value.\n")
 
         elif choice == "3":
             print("Exiting the Temperature Conversion Tool.")
