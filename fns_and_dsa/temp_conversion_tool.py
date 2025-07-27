@@ -1,15 +1,19 @@
+#!/usr/bin/env python3
+
 # Global conversion factors
-CELSIUS_TO_FAHRENHEIT_FACTOR = 9/5
-FAHRENHEIT_TO_CELSIUS_SUBTRACT = 32
-FAHRENHEIT_TO_CELSIUS_FACTOR = 5/9
+CELSIUS_TO_FAHRENHEIT_FACTOR = 9 / 5
+FAHRENHEIT_TO_CELSIUS_FACTOR = 5 / 9
 
 def celsius_to_fahrenheit(celsius):
-    return (celsius * CELSIUS_TO_FAHRENHEIT_FACTOR) + FAHRENHEIT_TO_CELSIUS_SUBTRACT
+    """Convert Celsius to Fahrenheit"""
+    return celsius * CELSIUS_TO_FAHRENHEIT_FACTOR + 32
 
 def fahrenheit_to_celsius(fahrenheit):
-    return (fahrenheit - FAHRENHEIT_TO_CELSIUS_SUBTRACT) * FAHRENHEIT_TO_CELSIUS_FACTOR
+    """Convert Fahrenheit to Celsius"""
+    return (fahrenheit - 32) * FAHRENHEIT_TO_CELSIUS_FACTOR
 
 def display_menu():
+    """Display the temperature conversion menu"""
     print("Temperature Conversion Tool")
     print("1. Celsius to Fahrenheit")
     print("2. Fahrenheit to Celsius")
@@ -18,21 +22,24 @@ def display_menu():
 def main():
     while True:
         display_menu()
-        choice = input("Enter your choice (1-3): ")
+        choice = input("Enter your choice (1/2/3): ")
 
-        if choice == '1':
-            temp = float(input("Enter temperature in Celsius: "))
-            result = celsius_to_fahrenheit(temp)
-            print(f"{temp}°C is {result:.2f}°F")
-        elif choice == '2':
-            temp = float(input("Enter temperature in Fahrenheit: "))
-            result = fahrenheit_to_celsius(temp)
-            print(f"{temp}°F is {result:.2f}°C")
-        elif choice == '3':
-            print("Goodbye!")
+        if choice == "1":
+            celsius = float(input("Enter temperature in Celsius: "))
+            fahrenheit = celsius_to_fahrenheit(celsius)
+            print(f"{celsius}°C is {fahrenheit:.2f}°F\n")
+
+        elif choice == "2":
+            fahrenheit = float(input("Enter temperature in Fahrenheit: "))
+            celsius = fahrenheit_to_celsius(fahrenheit)
+            print(f"{fahrenheit}°F is {celsius:.2f}°C\n")
+
+        elif choice == "3":
+            print("Exiting the Temperature Conversion Tool.")
             break
+
         else:
-            print("Invalid choice. Please enter a number between 1 and 3.")
+            print("Invalid choice. Please select 1, 2, or 3.\n")
 
 if __name__ == "__main__":
     main()
