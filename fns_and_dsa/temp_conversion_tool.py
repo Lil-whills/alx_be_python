@@ -12,40 +12,29 @@ def fahrenheit_to_celsius(fahrenheit):
     """Convert Fahrenheit to Celsius"""
     return (fahrenheit - 32) * FAHRENHEIT_TO_CELSIUS_FACTOR
 
-def display_menu():
-    """Display the temperature conversion menu"""
-    print("Temperature Conversion Tool")
-    print("1. Celsius to Fahrenheit")
-    print("2. Fahrenheit to Celsius")
-    print("3. Exit")
-
 def main():
     while True:
-        display_menu()
-        choice = input("Enter your choice (1/2/3): ")
+        try:
+            temp_input = float(input("Enter the temperature to convert: "))
+            unit = input("Is this temperature in Celsius or Fahrenheit? (C/F): ").strip().upper()
 
-        if choice == "1":
-            try:
-                celsius = float(input("Enter temperature in Celsius: "))
-                fahrenheit = celsius_to_fahrenheit(celsius)
-                print(f"{celsius}°C is {fahrenheit:.2f}°F\n")
-            except ValueError:
-                print("Invalid input. Please enter a numeric value.\n")
+            if unit == 'C':
+                converted = celsius_to_fahrenheit(temp_input)
+                print(f"{temp_input}°C is {converted:.2f}°F\n")
+            elif unit == 'F':
+                converted = fahrenheit_to_celsius(temp_input)
+                print(f"{temp_input}°F is {converted:.2f}°C\n")
+            else:
+                print("Invalid unit. Please enter C or F.\n")
+                continue
 
-        elif choice == "2":
-            try:
-                fahrenheit = float(input("Enter temperature in Fahrenheit: "))
-                celsius = fahrenheit_to_celsius(fahrenheit)
-                print(f"{fahrenheit}°F is {celsius:.2f}°C\n")
-            except ValueError:
-                print("Invalid input. Please enter a numeric value.\n")
+            again = input("Do you want to convert another temperature? (y/n): ").strip().lower()
+            if again != 'y':
+                print("Exiting the Temperature Conversion Tool.")
+                break
 
-        elif choice == "3":
-            print("Exiting the Temperature Conversion Tool.")
-            break
-
-        else:
-            print("Invalid choice. Please select 1, 2, or 3.\n")
+        except ValueError:
+            print("Invalid input. Please enter a numeric temperature.\n")
 
 if __name__ == "__main__":
     main()
